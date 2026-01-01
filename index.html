@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glam and Gadget Hub | Premium Watches & Chains</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-secondary: #F5D76E;
+            --gold-dark: #B7950B;
+            --gold-light: #F7EF8A;
+            --gold-glow: rgba(212, 175, 55, 0.3);
+            --dark: #0A0A0A;
+            --dark-light: #1A1A1A;
+            --light: #F5F5F5;
+            --gray: #888;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --radius: 12px;
+            --shimmer: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+        }
+
+        .header-scrolled {
+            padding: 10px 0;
+            background-color: rgba(10, 10, 10, 0.98);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+            filter: drop-shadow(0 0 5px var(--gold-primary));
+            transition: var(--transition);
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--gold-primary);
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .logo-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold-primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold-secondary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gold-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.7)), url('https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--shimmer);
+            animation: shimmer 3s infinite linear;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px var(--gold-glow);
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            color: var(--light);
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            color: var(--dark);
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--shimmer);
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.6);
+            color: var(--dark);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            display: inline-block;
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px var(--gold-glow);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background-color: var(--dark-light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.03) 50%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .product-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .product-img {
+            height: 220px;
+            background-color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 70%, rgba(10, 10, 10, 0.8));
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.08);
+        }
+
+        .product-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: var(--gold-secondary);
+            font-weight: 600;
+            font-family: 'Cinzel', serif;
+        }
+
+        .product-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--gold-primary);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-price::before {
+            content: 'GH₵';
+            font-size: 1rem;
+            margin-right: 5px;
+            color: var(--gold-secondary);
+        }
+
+        .product-age {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-age i {
+            margin-right: 8px;
+            color: var(--gold-primary);
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--gold-primary);
+            color: var(--gold-primary);
+            padding: 10px 20px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--gold-primary);
+            color: var(--dark);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-whatsapp i {
+            margin-right: 8px;
+        }
+
+        .about {
+            background-color: var(--dark-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 40%, rgba(212, 175, 55, 0.02) 50%, transparent 60%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-text {
+            max-width: 900px;
+        }
+
+        .about-text h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--gold-primary);
+            text-shadow: 0 0 10px var(--gold-glow);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--light);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .stat-text {
+            color: var(--gray);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+       
+        .contact {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(26, 26, 26, 0.9)), url('https://images.unsplash.com/photo-1623998021453-2c8e5b5e5b1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            z-index: -1;
+        }
+
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            color: var(--light);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .contact-detail {
+            background-color: rgba(26, 26, 26, 0.7);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+        }
+
+        .contact-detail:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-detail i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--gold-primary);
+        }
+
+        .contact-detail h4 {
+            margin-bottom: 10px;
+            color: var(--gold-secondary);
+        }
+
+        .contact-detail p {
+            margin-bottom: 0;
+            color: var(--light);
+        }
+
+    
+        footer {
+            background-color: var(--dark);
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: var(--gold-primary);
+            font-family: 'Cinzel', serif;
+        }
+
+        .footer-column p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-secondary);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            color: var(--gold-primary);
+            width: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--dark-light);
+            color: var(--gold-primary);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--gold-primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--dark-light);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            transition: var(--transition);
+            padding: 80px 30px 30px;
+            border-left: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--light);
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: block;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--gold-primary);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--gold-primary);
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Animations */
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .gold-text {
+            color: var(--gold-primary);
+            text-shadow: 0 0 5px var(--gold-glow);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 30px;
+            }
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            .stat-item {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo-container">
+                <img src="logo.jpg" alt="Chrono Luxe Logo" class="logo-img">
+                <div class="logo-text">Glam and Gadget Hub </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Collections</a></li>
+                <li><a href="#about">Craftsmanship</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="https://wa.me/233557098566" target="_blank" class="btn" style="padding: 8px 20px; font-size: 0.8rem;">Order Now</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#products" class="mobile-nav-link">Collections</a></li>
+            <li><a href="#about" class="mobile-nav-link">Craftsmanship</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            <li><a href="https://wa.me/233557098566" target="_blank" class="mobile-nav-link" style="color: var(--gold-primary);">Order via WhatsApp</a></li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Timeless Elegance, <span class="gold-text">Crafted in Gold</span></h1>
+                <p>Discover our exquisite collection of luxury watches and premium chains, where traditional craftsmanship meets modern design. Each piece is a testament to enduring quality and sophisticated style.</p>
+                <a href="#products" class="btn">Explore Collections</a>
+                <a href="https://wa.me/233557098566" target="_blank" class="btn" style="margin-left: 15px; background: linear-gradient(135deg, #25D366, #128C7E);">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Premium Collections</h2>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="71.jpg" alt="Classic Gold Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Classic Gold Chronograph</h3>
+                        <p>Handcrafted with 18k gold, featuring a Swiss automatic movement and sapphire crystal glass.</p>
+                        <div class="product-price">70.00</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Water resistant up to 100m</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Classic Gold Chronograph')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Classic Gold Chronograph. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="73.jpg" alt="Diamond Bezel Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Diamond Bezel Masterpiece</h3>
+                        <p>Luxury timepiece with genuine diamond bezel, gold plating, and precision movement.</p>
+                        <div class="product-price">70.00</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Limited edition of 500 pieces</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Diamond Bezel Masterpiece')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Diamond Bezel Masterpiece. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="100.jpg" alt="Rose Gold Chain">
+                    </div>
+                    <div class="product-content">
+                        <h3>Rose Gold Cuban Link Chain</h3>
+                        <p>22" handcrafted Cuban link chain made with premium rose gold plating.</p>
+                        <div class="product-price">100.00</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> 14k gold plating, 18" length</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Rose Gold Cuban Link Chain')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Rose Gold Cuban Link Chain. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="110.jpg" alt="Luxury Watch Collection">
+                    </div>
+                    <div class="product-content">
+                        <h3>Platinum Heritage Watch</h3>
+                        <p>Elegant platinum watch with moon phase complication and alligator leather strap.</p>
+                        <div class="product-price">110.00</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Swiss movement, 5-year warranty</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Platinum Heritage Watch')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Platinum Heritage Watch. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="150.jpg" alt="Gold Chain Collection">
+                    </div>
+                    <div class="product-content">
+                        <h3>Solid Gold Rope Chain</h3>
+                        <p>24k solid gold rope chain with secure lobster clasp and polished finish.</p>
+                        <div class="product-price">150</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> 24k gold, 20" length, 5mm width</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Solid Gold Rope Chain')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Solid Gold Rope Chain. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="151.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">150</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="152.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">150</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="153.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">150</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="154.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">150</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="155.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">150</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="156.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">150</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="157.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">150</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="250.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="251.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="252.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="253.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="254.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="255.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="256.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="258.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="259.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="2500.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="2501.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="2510.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="2511.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="25111.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="25501.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                        <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="25501.jpg" alt="Luxury Sports Watch">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Craftsmanship</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Masterpieces Forged in Excellence</h3>
+                    <p>At Glam and Gadget Hub, we believe style is more than appearance—it’s an experience. Our mission is to bring you high-quality gadgets that elevate your everyday life with elegance, convenience, and innovation.</p>
+                    <p>We specialize in premium watches that combine timeless design with modern functionality, and top-tier Bluetooth earbuds engineered for crystal-clear sound, comfort, and durability. Whether you're upgrading your personal style or enhancing your tech collection, we offer products that fit seamlessly into your lifestyle.</p>
+                    <p>As we grow, Glam and Gadget Hub is committed to expanding our collection to include more cutting-edge gadgets designed to keep you stylish, connected, and ahead of the trend.</p>
+                    <p>Quality, affordability, and customer satisfaction stand at the heart of everything we do. At Glam and Gadget Hub—your style meetssmart tech.</p>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-text">Years of Excellence</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-text">Satisfied Clients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-text">Authentic Materials</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-text">Customer Support</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-info">
+                <h3>Experience Luxury, Connect With Us</h3>
+                <p>Have questions about our collections or need personalized assistance? Our luxury consultants are available to help you find the perfect timepiece or chain.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Visit Our Boutique</h4>
+                        <p>123 Luxury Avenue<br>Kumasi, Ghana</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <h4>Call Us</h4>
+                        <p>+233 (055) 709-8566<br>Mon-Sat: 9AM-7PM</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>info@glam.com<br>Response within 24 hours</p>
+                    </div>
+                    <div class="contact-detail">
+                        <i class="fab fa-whatsapp"></i>
+                        <h4>WhatsApp</h4>
+                        <p>+233 (055) 709-8566<br>Direct ordering & inquiries</p>
+                    </div>
+                </div>
+                
+                <a href="https://wa.me/233557098566" target="_blank" class="btn" style="background: linear-gradient(135deg, #25D366, #128C7E); padding: 15px 40px; font-size: 1rem;">
+                    <i class="fab fa-whatsapp"></i> Start WhatsApp Conversation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Chrono Luxe</h3>
+                    <p>Timeless elegance crafted with precision and passion. Our luxury watches and chains represent the pinnacle of craftsmanship and design.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#products"><i class="fas fa-chevron-right"></i> Collections</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> Craftsmanship</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Watch Servicing</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Chain Resizing</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Authenticity Verification</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Custom Orders</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/233557098566" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Orders</a></li>
+                        <li><a href="mailto:info@chronoluxe.com"><i class="fas fa-envelope"></i> Email Inquiries</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +233 (055) 709-8566</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Boutique Location</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Glam and Gadget Hub. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: var(--gold-primary);"></i> for luxury enthusiasts</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        const overlay = document.getElementById('overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMobileMenu() {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenu.addEventListener('click', openMobileMenu);
+        closeMenu.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Order Functions
+        function viewDetails(productName) {
+            alert(`You selected: ${productName}\n\nOur luxury consultant will contact you shortly with detailed specifications and customization options.`);
+        }
+
+        // WhatsApp Order Function
+        function orderViaWhatsApp(productName) {
+            const phoneNumber = "233557098566"; 
+            const message = `Hello Glam and Gadget Hub, I'm interested in the ${productName}. Please provide more information about availability, pricing, and customization options.`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Product card animations
+        function animateProductCards() {
+            const productCards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            productCards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            animateProductCards();
+            
+            // Add gold shimmer effect to all buttons on hover
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.boxShadow = '0 10px 25px rgba(212, 175, 55, 0.6)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.4)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

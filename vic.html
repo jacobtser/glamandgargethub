@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norma's Beauty Sanctuary | Head To Toe Perfection!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #4A44C6;
+            --accent: #FF6584;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
+        }
+
+        .dark-theme {
+            --light: #121212;
+            --dark: #f8f9fa;
+            --gray: #a0a0a0;
+            --light-gray: #2d2d2d;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: var(--light);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .header-scrolled {
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 101, 132, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 101, 132, 0.5);
+        }
+
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .product-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-img {
+            height: 200px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .product-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .product-age {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--light-gray);
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .about-text {
+            max-width: 800px;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        /* Rating Section */
+        .rating-form {
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--radius);
+            background-color: var(--light);
+            color: var(--dark);
+            font-family: inherit;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background-color: var(--light);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+            transition: var(--transition);
+            padding: 80px 30px 30px;
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav-links {
+            list-style: none;
+        }
+
+        .mobile-nav-links li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .mobile-nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-spa"></i>
+                Norma's Beauty Sanctuary
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#ratings">Ratings</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="mobile-nav-link">Home</a></li>
+            <li><a href="#products" class="mobile-nav-link">Products</a></li>
+            <li><a href="#about" class="mobile-nav-link">About</a></li>
+            <li><a href="#ratings" class="mobile-nav-link">Ratings</a></li>
+            <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            <li>
+                <button class="theme-toggle mobile-theme-toggle" id="mobileThemeToggle">
+                    <i class="fas fa-moon"></i> Toggle Theme
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Experience Beauty Like Never Before</h1>
+                <p>Premium hair, skincare and women products at the most affordable price. We deliver the best of the best.</p>
+                <a href="#products" class="btn">Explore Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+            
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/darling.jpeg" alt="Darling Hair">
+                    </div>
+                    <div class="product-content">
+                        <h3>Darling Hair</h3>
+                        <p>Great confidence with your braids.</p>
+                        <div class="product-price">GH₵ 40.00</div>
+                        <div class="product-age">Lifespan: 1-2 years with proper care</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('Darling Hair')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('Darling Hair')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images\outre.jpeg" alt="Outre Hair Extensions">
+                    </div>
+                    <div class="product-content">
+                        <h3>Outre Hair Extensions</h3>
+                        <p>Premium quality hair extensions for a natural look.</p>
+                        <div class="product-price">GH₵ 40.00</div>
+                        <div class="product-age">Durability: 18+ months</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('Outre Hair Extensions')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('Outre Hair Extensions')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images\lush.jpeg"alt="Lush Hair Extensions">
+                    </div>
+                    <div class="product-content">
+                        <h3>Lush Hair Extensions</h3>
+                        <p>Luxurious and voluminous hair extensions.</p>
+                        <div class="product-price">GH₵ 45.00</div>
+                        <div class="product-age">Lasts 2+ years with proper maintenance</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('Lush Hair Extensions')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('Lush Hair Extensions')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images/extension.webp" alt="Premium Hair Extensions">
+                    </div>
+                    <div class="product-content">
+                        <h3>Premium Hair Extensions</h3>
+                        <p>High-quality extensions for everyday wear.</p>
+                        <div class="product-price">GH₵ 20.00</div>
+                        <div class="product-age">Ideal for 12-18 months of regular use</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('Premium Hair Extensions')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('Premium Hair Extensions')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images\2 in 1.jpeg" alt="2 in 1 Lush Hair">
+                    </div>
+                    <div class="product-content">
+                        <h3>2 in 1 Lush Hair</h3>
+                        <p>Versatile hair that can be styled in multiple ways.</p>
+                        <div class="product-price">GH₵ 75.00</div>
+                        <div class="product-age">Multi-purpose, lasts 2+ years</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('2 in 1 Lush Hair')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('2 in 1 Lush Hair')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images\kinky estra long.jpeg" alt="Kinky Extra Long">
+                    </div>
+                    <div class="product-content">
+                        <h3>Kinky Extra Long</h3>
+                        <p>Long, kinky hair for bold and beautiful styles.</p>
+                        <div class="product-price">GH₵ 65.00</div>
+                        <div class="product-age">Maintains texture for 18+ months</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('Kinky Extra Long')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('Kinky Extra Long')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images\afro kinky.jpeg" alt="Afro Kinky Long">
+                    </div>
+                    <div class="product-content">
+                        <h3>Afro Kinky Long</h3>
+                        <p>Natural-looking afro kinky hair extensions.</p>
+                        <div class="product-price">GH₵ 25.00</div>
+                        <div class="product-age">Great value, lasts 12+ months</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('Afro Kinky Long')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('Afro Kinky Long')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 9 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images\normal kinky.jpeg" alt="Normal Kinky">
+                    </div>
+                    <div class="product-content">
+                        <h3>Normal Kinky</h3>
+                        <p>Classic kinky hair for everyday styles.</p>
+                        <div class="product-price">GH₵ 45.00</div>
+                        <div class="product-age">Reliable quality for 15+ months</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('Normal Kinky')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('Normal Kinky')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 10 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images\frenchtress.jpeg" alt="Frenchtress 3 in 1 Curls">
+                    </div>
+                    <div class="product-content">
+                        <h3>Frenchtress 3 in 1 Curls</h3>
+                        <p>Versatile curly hair with multiple styling options.</p>
+                        <div class="product-price">GH₵ 85.00</div>
+                        <div class="product-age">Premium quality, 2+ year lifespan</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('Frenchtress 3 in 1 Curls')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('Frenchtress 3 in 1 Curls')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 11 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images\deepwaves.jpeg" alt="Deep Waves Extensions 24 inches">
+                    </div>
+                    <div class="product-content">
+                        <h3>Deep Waves Extensions 24 inches</h3>
+                        <p>Beautiful deep wave pattern for elegant styles.</p>
+                        <div class="product-price">GH₵ 30.00</div>
+                        <div class="product-age">Maintains wave pattern for 12+ months</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('Deep Waves Extensions 24 inches')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('Deep Waves Extensions 24 inches')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 12 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="images\french curls.jpeg" alt="French Curls 24 inches">
+                    </div>
+                    <div class="product-content">
+                        <h3>French Curls 24 inches</h3>
+                        <p>Elegant French curls for a sophisticated look.</p>
+                        <div class="product-price">GH₵ 45.00</div>
+                        <div class="product-age">Curly texture lasts 15+ months</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="orderProduct('French Curls 24 inches')">Order Now</button>
+                            <button class="btn" onclick="orderViaWhatsApp('French Curls 24 inches')">WhatsApp</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Norma's Hair and Skin Sanctuary</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Norma's Beauty Sanctuary has been founded Since 2020</h3>
+                    <p>Norma's Beauty Sanctuary began with a simple mission: to bring out your in-built beauty without having to spend your hard earned cash on unreliable products.</p>
+                    <p>We bring to you quality but affordable hair and skin care products you've never had your hands on before.</p>
+                    <p>With over 3 years of experience in the beauty industry, we've curated the finest collection of hair and skincare products that combine quality, affordability, and lasting results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ratings Section -->
+    <section id="ratings">
+        <div class="container">
+            <div class="section-title">
+                <h2>Customer Ratings</h2>
+            </div>
+            <div class="rating-form">
+                <h3>Share Your Experience</h3>
+                <form id="ratingForm">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <select class="form-control" id="productName" required>
+                            <option value="">Select a product</option>
+                            <option value="Mesh">Mesh</option>
+                            <option value="Darling Hair">Darling Hair</option>
+                            <option value="Outre Hair Extensions">Outre Hair Extensions</option>
+                            <option value="Lush Hair Extensions">Lush Hair Extensions</option>
+                            <option value="Premium Hair Extensions">Premium Hair Extensions</option>
+                            <option value="2 in 1 Lush Hair">2 in 1 Lush Hair</option>
+                            <option value="Kinky Extra Long">Kinky Extra Long</option>
+                            <option value="Afro Kinky Long">Afro Kinky Long</option>
+                            <option value="Normal Kinky">Normal Kinky</option>
+                            <option value="Frenchtress 3 in 1 Curls">Frenchtress 3 in 1 Curls</option>
+                            <option value="Deep Waves Extensions 24 inches">Deep Waves Extensions 24 inches</option>
+                            <option value="French Curls 24 inches">French Curls 24 inches</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Your Rating</label>
+                        <select class="form-control" id="rating" required>
+                            <option value="">Select rating</option>
+                            <option value="5">★★★★★ - Excellent</option>
+                            <option value="4">★★★★ - Very Good</option>
+                            <option value="3">★★★ - Good</option>
+                            <option value="2">★★ - Fair</option>
+                            <option value="1">★ - Poor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review">Your Review</label>
+                        <textarea class="form-control" id="review" rows="4" placeholder="Share your experience..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Review</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>Have questions about our products? We're here to help!</p>
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Our Location</strong>
+                        <p>Kumasi, KNUST, Brunei</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Phone</strong>
+                        <p>+233 (059) 869-0790</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <p>victorianorma266@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p>+233 59 869 0790</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Norma's Beauty Sanctuary</h3>
+                    <p>Premium solutions for every Lady.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#ratings">Ratings</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/233598690790" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="mailto:victorianorma266@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Norma's Beauty Sanctuary. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const icons = document.querySelectorAll('.theme-toggle i');
+            icons.forEach(icon => {
+                if (document.body.classList.contains('dark-theme')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+            // Save theme preference to localStorage
+            localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+        }
+        
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            const icons = document.querySelectorAll('.theme-toggle i');
+            icons.forEach(icon => {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            });
+        }
+
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeMenu = document.getElementById('closeMenu');
+        const overlay = document.getElementById('overlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMobileMenu() {
+            mobileNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenu.addEventListener('click', openMobileMenu);
+        closeMenu.addEventListener('click', closeMobileMenu);
+        overlay.addEventListener('click', closeMobileMenu);
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Order Functions
+        function orderProduct(productName) {
+            alert(`Thank you for your interest in ${productName}! You'll be redirected to our order form.`);
+            // In a real implementation, you would redirect to an order page or form
+            // window.location.href = `/order?product=${encodeURIComponent(productName)}`;
+        }
+
+        function orderViaWhatsApp(productName) {
+            const phoneNumber = "233598690790"; // Fixed: Removed the '+' and any formatting
+            const message = `Hello, I would like to order the ${productName}. Please provide more information.`;
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        // Rating Form
+        const ratingForm = document.getElementById('ratingForm');
+        ratingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const productName = document.getElementById('productName').value;
+            const rating = document.getElementById('rating').value;
+            const review = document.getElementById('review').value;
+            
+            // In a real implementation, you would send this data to your backend
+            console.log({ productName, rating, review });
+            
+            alert(`Thank you for your ${rating}-star review of ${productName}! Your feedback has been submitted.`);
+            ratingForm.reset();
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+
+        // Product card animations
+        function animateProductCards() {
+            const productCards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            productCards.forEach(card => {
+                observer.observe(card);
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            animateProductCards();
+        });
+    </script>
+</body>
+</html>
+
