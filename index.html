@@ -7,6 +7,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+
+        .developer-info {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.2);
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 3px 8px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            font-family: monospace;
+        }
+        
+        .developer-info:hover {
+            color: rgba(255, 255, 255, 0.4);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+        
+       
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+
         :root {
             --gold-primary: #D4AF37;
             --gold-secondary: #F5D76E;
@@ -52,7 +90,7 @@
             padding: 100px 0;
         }
 
-        /* Header Styles */
+
         header {
             position: fixed;
             top: 0;
@@ -77,6 +115,7 @@
             padding: 20px 0;
         }
 
+   
         .logo-container {
             display: flex;
             align-items: center;
@@ -85,11 +124,14 @@
         }
 
         .logo-img {
-            height: 50px;
-            width: auto;
+            height: 70px; 
+            width: 70px; 
             margin-right: 15px;
             filter: drop-shadow(0 0 5px var(--gold-primary));
             transition: var(--transition);
+            border-radius: 50%; 
+            object-fit: cover;
+            border: 2px solid var(--gold-primary);
         }
 
         .logo-text {
@@ -157,7 +199,7 @@
             color: var(--gold-primary);
         }
 
-        /* Hero Section */
+   
         .hero {
             height: 100vh;
             display: flex;
@@ -183,6 +225,7 @@
             max-width: 700px;
             z-index: 2;
             position: relative;
+            padding-top: 80px; 
         }
 
         .hero h1 {
@@ -193,6 +236,8 @@
             color: var(--gold-primary);
             text-shadow: 0 0 10px var(--gold-glow);
             letter-spacing: 2px;
+            position: relative;
+            z-index: 3;
         }
 
         .hero p {
@@ -244,7 +289,7 @@
             left: 100%;
         }
 
-        /* Products Section */
+ 
         .section-title {
             text-align: center;
             margin-bottom: 80px;
@@ -278,16 +323,18 @@
             gap: 40px;
         }
 
+       
         .product-card {
             background-color: var(--dark-light);
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 1; 
+            transform: translateY(0); 
             position: relative;
             border: 1px solid rgba(212, 175, 55, 0.1);
+            visibility: visible !important; 
         }
 
         .product-card::before {
@@ -300,11 +347,6 @@
             background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.03) 50%, transparent 70%);
             z-index: 1;
             pointer-events: none;
-        }
-
-        .product-card.animate {
-            opacity: 1;
-            transform: translateY(0);
         }
 
         .product-card:hover {
@@ -737,12 +779,23 @@
             100% { transform: translateX(100%); }
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .gold-text {
             color: var(--gold-primary);
             text-shadow: 0 0 5px var(--gold-glow);
         }
 
-        /* Responsive */
+        /* Enhanced mobile responsiveness */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -752,6 +805,7 @@
             }
             .hero h1 {
                 font-size: 2.5rem;
+                margin-top: 20px;
             }
             .section-title h2 {
                 font-size: 2.2rem;
@@ -767,15 +821,94 @@
             .stat-item {
                 margin-bottom: 20px;
             }
+            .hero {
+                padding-top: 60px;
+                height: auto;
+                min-height: 100vh;
+            }
+            .hero-content {
+                padding-top: 100px;
+            }
+            .logo-img {
+                height: 60px;
+                width: 60px;
+            }
+            .logo-text {
+                font-size: 1.5rem;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.85rem;
+                margin-bottom: 10px;
+                display: block;
+                width: 100%;
+                max-width: 300px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero .btn {
+                display: inline-block;
+                width: auto;
+                margin: 5px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-content {
+                text-align: center;
+            }
+            .hero .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+            .logo-img {
+                height: 50px;
+                width: 50px;
+            }
+            .logo-text {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Improved touch responsiveness */
+        @media (hover: none) and (pointer: coarse) {
+            .btn:hover {
+                transform: none;
+            }
+            .product-card:hover {
+                transform: none;
+            }
+            .contact-detail:hover {
+                transform: none;
+            }
+            .social-links a:hover {
+                transform: none;
+            }
+            .nav-links a:hover::after {
+                width: 0;
+            }
+        }
+
+        /* Smooth scrolling enhancement */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
     </style>
 </head>
 <body>
+    <!-- Developer Info - Subtle and Non-Intrusive -->
+    <div class="developer-info">
+        Crafted by Jacob Tser Doku
+    </div>
    
     <header id="header">
         <div class="container header-container">
             <a href="#" class="logo-container">
-                <img src="logo.jpg" alt="Chrono Luxe Logo" class="logo-img">
+                <img src="logo.jpg" alt="Glam and Gadget Hub Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/70/1A1A1A/D4AF37?text=GLAM'">
                 <div class="logo-text">Glam and Gadget Hub </div>
             </a>
             <ul class="nav-links">
@@ -820,7 +953,7 @@
         </div>
     </section>
 
-    <!-- Products Section -->
+    <!-- Products Section - ALL 28 PRODUCTS VISIBLE NOW -->
     <section id="products">
         <div class="container">
             <div class="section-title">
@@ -828,9 +961,9 @@
             </div>
             <div class="products-grid">
                 <!-- Product 1 -->
-                <div class="product-card">
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="71.jpg" alt="Classic Gold Watch">
+                        <img src="71.jpg" alt="Classic Gold Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Classic+Gold+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Classic Gold Chronograph</h3>
@@ -847,9 +980,9 @@
                 </div>
                 
                 <!-- Product 2 -->
-                <div class="product-card">
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="73.jpg" alt="Diamond Bezel Watch">
+                        <img src="73.jpg" alt="Diamond Bezel Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Diamond+Bezel+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Diamond Bezel Masterpiece</h3>
@@ -866,9 +999,9 @@
                 </div>
                 
                 <!-- Product 3 -->
-                <div class="product-card">
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="100.jpg" alt="Rose Gold Chain">
+                        <img src="100.jpg" alt="Rose Gold Chain" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Rose+Gold+Chain'">
                     </div>
                     <div class="product-content">
                         <h3>Rose Gold Cuban Link Chain</h3>
@@ -885,9 +1018,9 @@
                 </div>
                 
                 <!-- Product 4 -->
-                <div class="product-card">
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="110.jpg" alt="Luxury Watch Collection">
+                        <img src="110.jpg" alt="Luxury Watch Collection" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Platinum Heritage Watch</h3>
@@ -904,9 +1037,9 @@
                 </div>
                 
                 <!-- Product 5 -->
-                <div class="product-card">
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="150.jpg" alt="Gold Chain Collection">
+                        <img src="150.jpg" alt="Gold Chain Collection" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Gold+Chain'">
                     </div>
                     <div class="product-content">
                         <h3>Solid Gold Rope Chain</h3>
@@ -923,9 +1056,9 @@
                 </div>
                 
                 <!-- Product 6 -->
-                <div class="product-card">
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="151.jpg" alt="Luxury Sports Watch">
+                        <img src="151.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Sports+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -941,30 +1074,10 @@
                     </div>
                 </div>
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 7 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="152.jpg" alt="Luxury Sports Watch">
-                    </div>
-                    <div class="product-content">
-                        <h3>Sport Luxury Diver</h3>
-                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
-                        <div class="product-price">150</div>
-                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
-                        <div class="product-actions">
-                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
-                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
-                                <i class="fab fa-whatsapp"></i> Order
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-                        <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="153.jpg" alt="Luxury Sports Watch">
+                        <img src="152.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Sports+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -981,10 +1094,10 @@
                 </div>
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 8 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="154.jpg" alt="Luxury Sports Watch">
+                        <img src="153.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Sports+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1001,10 +1114,10 @@
                 </div>
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 9 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="155.jpg" alt="Luxury Sports Watch">
+                        <img src="154.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Sports+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1021,10 +1134,10 @@
                 </div>
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 10 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="156.jpg" alt="Luxury Sports Watch">
+                        <img src="155.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Sports+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1041,10 +1154,10 @@
                 </div>
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 11 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="157.jpg" alt="Luxury Sports Watch">
+                        <img src="156.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Sports+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1061,10 +1174,30 @@
                 </div>
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 12 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="250.jpg" alt="Luxury Sports Watch">
+                        <img src="157.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Sports+Watch'">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">150</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Product 13 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
+                    <div class="product-img">
+                        <img src="250.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1081,52 +1214,10 @@
                 </div>
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 14 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="251.jpg" alt="Luxury Sports Watch">
-                    </div>
-                    <div class="product-content">
-                        <h3>Sport Luxury Diver</h3>
-                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
-                        <div class="product-price">250</div>
-                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
-                        <div class="product-actions">
-                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
-                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
-                                <i class="fab fa-whatsapp"></i> Order
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                        <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="252.jpg" alt="Luxury Sports Watch">
-                    </div>
-                    <div class="product-content">
-                        <h3>Sport Luxury Diver</h3>
-                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
-                        <div class="product-price">250</div>
-                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
-                        <div class="product-actions">
-                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
-                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
-                                <i class="fab fa-whatsapp"></i> Order
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                        <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="253.jpg" alt="Luxury Sports Watch">
+                        <img src="251.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1144,10 +1235,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 15 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="254.jpg" alt="Luxury Sports Watch">
+                        <img src="252.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1165,10 +1256,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 16 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="255.jpg" alt="Luxury Sports Watch">
+                        <img src="253.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1186,10 +1277,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 17 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="256.jpg" alt="Luxury Sports Watch">
+                        <img src="254.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1207,10 +1298,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 18 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="258.jpg" alt="Luxury Sports Watch">
+                        <img src="255.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1228,10 +1319,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 19 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="259.jpg" alt="Luxury Sports Watch">
+                        <img src="256.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1249,10 +1340,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 20 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="2500.jpg" alt="Luxury Sports Watch">
+                        <img src="258.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1270,10 +1361,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 21 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="2501.jpg" alt="Luxury Sports Watch">
+                        <img src="259.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1291,10 +1382,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 22 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="2510.jpg" alt="Luxury Sports Watch">
+                        <img src="2500.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1312,11 +1403,10 @@
 
 
 
-
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 23 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="2511.jpg" alt="Luxury Sports Watch">
+                        <img src="2501.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1334,11 +1424,10 @@
 
 
 
-
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 24 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="25111.jpg" alt="Luxury Sports Watch">
+                        <img src="2510.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1357,10 +1446,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 25 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="25501.jpg" alt="Luxury Sports Watch">
+                        <img src="2511.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1379,10 +1468,10 @@
 
 
 
-                        <!-- Product 6 -->
-                <div class="product-card">
+                <!-- Product 26 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
                     <div class="product-img">
-                        <img src="25501.jpg" alt="Luxury Sports Watch">
+                        <img src="25111.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
                     </div>
                     <div class="product-content">
                         <h3>Sport Luxury Diver</h3>
@@ -1401,6 +1490,47 @@
 
 
 
+                <!-- Product 27 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
+                    <div class="product-img">
+                        <img src="25501.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Product 28 -->
+                <div class="product-card" style="opacity: 1; transform: translateY(0); visibility: visible;">
+                    <div class="product-img">
+                        <img src="25501.jpg" alt="Luxury Sports Watch" onerror="this.src='https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=Luxury+Watch'">
+                    </div>
+                    <div class="product-content">
+                        <h3>Sport Luxury Diver</h3>
+                        <p>Professional dive watch with ceramic bezel, helium escape valve, and 300m water resistance.</p>
+                        <div class="product-price">250</div>
+                        <div class="product-age"><i class="fas fa-gem"></i> Certified chronometer, 42mm case</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="viewDetails('Sport Luxury Diver')">Details</button>
+                            <a href="https://wa.me/233557098566?text=Hello! I'm interested in the Sport Luxury Diver. Please provide more details." target="_blank" class="btn btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Products -->
 
             </div>
         </div>
@@ -1415,10 +1545,10 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>Masterpieces Forged in Excellence</h3>
-                    <p>At Glam and Gadget Hub, we believe style is more than appearance—it’s an experience. Our mission is to bring you high-quality gadgets that elevate your everyday life with elegance, convenience, and innovation.</p>
+                    <p>At Glam and Gadget Hub, we believe style is more than appearance—it's an experience. Our mission is to bring you high-quality gadgets that elevate your everyday life with elegance, convenience, and innovation.</p>
                     <p>We specialize in premium watches that combine timeless design with modern functionality, and top-tier Bluetooth earbuds engineered for crystal-clear sound, comfort, and durability. Whether you're upgrading your personal style or enhancing your tech collection, we offer products that fit seamlessly into your lifestyle.</p>
                     <p>As we grow, Glam and Gadget Hub is committed to expanding our collection to include more cutting-edge gadgets designed to keep you stylish, connected, and ahead of the trend.</p>
-                    <p>Quality, affordability, and customer satisfaction stand at the heart of everything we do. At Glam and Gadget Hub—your style meetssmart tech.</p>
+                    <p>Quality, affordability, and customer satisfaction stand at the heart of everything we do. At Glam and Gadget Hub—your style meets smart tech.</p>
                 </div>
                 <div class="stats">
                     <div class="stat-item">
@@ -1456,7 +1586,8 @@
                     <div class="contact-detail">
                         <i class="fas fa-map-marker-alt"></i>
                         <h4>Visit Our Boutique</h4>
-                        <p>123 Luxury Avenue<br>Kumasi, Ghana</p>
+                        <p>KNUST Campus<br>Kumasi, Ghana</p>
+                        <p>Accra<br>Lashibi, Ghana</p>
                     </div>
                     <div class="contact-detail">
                         <i class="fas fa-phone"></i>
@@ -1525,12 +1656,40 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Glam and Gadget Hub. All rights reserved. | Crafted with <i class="fas fa-heart" style="color: var(--gold-primary);"></i> for luxury enthusiasts</p>
+                <p>&copy; 2026 Glam and Gadget Hub. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Security Measures: Prevent right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // Security Measures: Prevent text selection
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+
+        // Security Measures: Prevent drag-and-drop of images
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.preventDefault();
+            }
+        });
+
+        // Security Measures: Prevent keyboard shortcuts for view source
+        document.addEventListener('keydown', function(e) {
+            // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || 
+                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || 
+                (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+            }
+        });
+
         // Mobile Menu
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileNav = document.getElementById('mobileNav');
@@ -1581,23 +1740,9 @@
             }
         });
 
-        // Product card animations
-        function animateProductCards() {
-            const productCards = document.querySelectorAll('.product-card');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate');
-                    }
-                });
-            }, { threshold: 0.1 });
+        
 
-            productCards.forEach(card => {
-                observer.observe(card);
-            });
-        }
-
-        // Smooth scroll for anchor links
+        // Smooth scroll for anchor links with offset for fixed header
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1607,28 +1752,87 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    const headerHeight = document.getElementById('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetPosition,
                         behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            animateProductCards();
-            
-            // Add gold shimmer effect to all buttons on hover
+        // Add hover effects to all buttons
+        function enhanceButtons() {
             const buttons = document.querySelectorAll('.btn');
             buttons.forEach(button => {
                 button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.05)';
                     this.style.boxShadow = '0 10px 25px rgba(212, 175, 55, 0.6)';
                 });
                 
                 button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
                     this.style.boxShadow = '0 4px 15px rgba(212, 175, 55, 0.4)';
                 });
+            });
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Products are already visible - no need to animate them
+            enhanceButtons();
+            
+            // Force all product cards to be visible
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+                card.style.visibility = 'visible';
+                card.style.display = 'block';
+            });
+
+            // Enhanced mobile responsiveness
+            function checkMobile() {
+                if (window.innerWidth <= 768) {
+                    document.body.classList.add('mobile');
+                } else {
+                    document.body.classList.remove('mobile');
+                }
+            }
+
+            checkMobile();
+            window.addEventListener('resize', checkMobile);
+
+            // Add smooth animations to logo
+            const logo = document.querySelector('.logo-container');
+            logo.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            logo.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+
+            // Ensure all images have fallback
+            const images = document.querySelectorAll('.product-img img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    const altText = this.alt || 'Product Image';
+                    this.src = `https://via.placeholder.com/300x220/1A1A1A/D4AF37?text=${encodeURIComponent(altText)}`;
+                });
+            });
+        });
+
+        // Force products to be visible on window load
+        window.addEventListener('load', function() {
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+                card.style.visibility = 'visible';
+                card.style.display = 'block';
             });
         });
     </script>
