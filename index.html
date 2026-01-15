@@ -897,6 +897,34 @@
             scroll-behavior: smooth;
             scroll-padding-top: 80px;
         }
+
+        /* Additional admin styles */
+        #customMessage, #whatsappNumber {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        #ordersList::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #ordersList::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        #ordersList::-webkit-scrollbar-thumb {
+            background: var(--gold-primary);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            #adminPanel .container {
+                padding: 10px;
+            }
+            
+            #ordersList {
+                max-height: 400px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1835,6 +1863,588 @@
                 card.style.display = 'block';
             });
         });
+    </script>
+
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center;">
+        <div style="background: var(--dark-light); padding: 40px; border-radius: var(--radius); max-width: 400px; width: 90%; border: 2px solid var(--gold-primary);">
+            <h3 style="color: var(--gold-primary); margin-bottom: 20px; text-align: center; font-family: 'Cinzel', serif;">Admin Login</h3>
+            <input type="password" id="adminPassword" placeholder="Enter Admin Password" style="width: 100%; padding: 12px; margin-bottom: 20px; background: var(--dark); border: 1px solid var(--gold-primary); color: var(--light); border-radius: 5px;">
+            <button onclick="loginAdmin()" class="btn" style="width: 100%;">Login</button>
+            <button onclick="closeAdminLogin()" class="btn btn-outline" style="width: 100%; margin-top: 10px;">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Admin Link (Hidden in main site, accessible via secret URL) -->
+    <div id="adminAccess" style="display: none; position: fixed; bottom: 50px; left: 10px; z-index: 9998;">
+        <button onclick="showAdminLogin()" class="btn" style="padding: 8px 15px; font-size: 0.8rem;">
+            <i class="fas fa-lock"></i> Admin
+        </button>
+    </div>
+
+    <!-- Admin Panel (Initially Hidden) -->
+    <div id="adminPanel" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); z-index: 10001; overflow-y: auto; padding: 20px;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h2 style="color: var(--gold-primary); font-family: 'Cinzel', serif;">Admin Dashboard</h2>
+                <button onclick="logoutAdmin()" class="btn btn-outline">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                <div style="background: var(--dark-light); padding: 20px; border-radius: var(--radius); border: 1px solid var(--gold-primary);">
+                    <h4 style="color: var(--gold-secondary); margin-bottom: 10px;">Today's Orders</h4>
+                    <div id="todayOrdersCount" style="font-size: 2.5rem; color: var(--gold-primary); font-weight: bold;">0</div>
+                </div>
+                <div style="background: var(--dark-light); padding: 20px; border-radius: var(--radius); border: 1px solid var(--gold-primary);">
+                    <h4 style="color: var(--gold-secondary); margin-bottom: 10px;">Total Orders</h4>
+                    <div id="totalOrdersCount" style="font-size: 2.5rem; color: var(--gold-primary); font-weight: bold;">0</div>
+                </div>
+                <div style="background: var(--dark-light); padding: 20px; border-radius: var(--radius); border: 1px solid var(--gold-primary);">
+                    <h4 style="color: var(--gold-secondary); margin-bottom: 10px;">Admin Settings</h4>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button onclick="clearAllOrders()" class="btn btn-outline" style="width: 100%;">
+                            <i class="fas fa-trash"></i> Clear All Orders
+                        </button>
+                        <button onclick="exportOrders()" class="btn btn-outline" style="width: 100%;">
+                            <i class="fas fa-download"></i> Export Orders
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: var(--dark-light); padding: 20px; border-radius: var(--radius); border: 1px solid var(--gold-primary);">
+                <h3 style="color: var(--gold-primary); margin-bottom: 20px; font-family: 'Cinzel', serif;">Recent Orders</h3>
+                <div id="ordersList" style="max-height: 500px; overflow-y: auto;">
+                    <!-- Orders will appear here -->
+                    <div style="text-align: center; padding: 40px; color: var(--gray);">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <p>No orders yet</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; padding: 20px; background: var(--dark-light); border-radius: var(--radius); border: 1px solid var(--gold-primary);">
+                <h3 style="color: var(--gold-primary); margin-bottom: 15px;">WhatsApp Notification Settings</h3>
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input type="text" id="whatsappNumber" placeholder="Owner's WhatsApp Number (233xxxxxxxxx)" style="flex: 1; padding: 10px; background: var(--dark); border: 1px solid var(--gold-primary); color: var(--light); border-radius: 5px;">
+                    <button onclick="saveWhatsAppNumber()" class="btn">Save Number</button>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="customMessage" placeholder="Custom notification message" style="flex: 1; padding: 10px; background: var(--dark); border: 1px solid var(--gold-primary); color: var(--light); border-radius: 5px;">
+                    <button onclick="testNotification()" class="btn btn-outline">Test Notification</button>
+                </div>
+                <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">
+                    <i class="fas fa-info-circle"></i> Notifications are sent automatically when orders are placed
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Admin System JavaScript
+    (function() {
+        // =================== CONFIGURATION ===================
+        const ADMIN_PASSWORD = "glam2024"; // Default admin password
+        const WHATSAPP_BUSINESS_NUMBER = "233557098566"; // Business WhatsApp number
+        
+        // =================== LOCAL STORAGE KEYS ===================
+        const STORAGE_KEYS = {
+            ORDERS: 'glam_orders',
+            ADMIN_LOGGED_IN: 'glam_admin_logged_in',
+            WHATSAPP_NUMBER: 'glam_whatsapp_number',
+            CUSTOM_MESSAGE: 'glam_custom_message'
+        };
+        
+        // =================== ORDER MANAGEMENT ===================
+        
+        // Initialize storage
+        function initStorage() {
+            if (!localStorage.getItem(STORAGE_KEYS.ORDERS)) {
+                localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify([]));
+            }
+            if (!localStorage.getItem(STORAGE_KEYS.WHATSAPP_NUMBER)) {
+                localStorage.setItem(STORAGE_KEYS.WHATSAPP_NUMBER, WHATSAPP_BUSINESS_NUMBER);
+            }
+            if (!localStorage.getItem(STORAGE_KEYS.CUSTOM_MESSAGE)) {
+                localStorage.setItem(STORAGE_KEYS.CUSTOM_MESSAGE, "🛍️ *NEW ORDER ALERT* 🛍️");
+            }
+        }
+        
+        // Save order to localStorage
+        function saveOrder(orderData) {
+            try {
+                const orders = getOrders();
+                orderData.id = Date.now();
+                orderData.timestamp = new Date().toISOString();
+                orderData.read = false;
+                orders.unshift(orderData); // Add to beginning
+                localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(orders));
+                
+                // Send WhatsApp notification
+                sendWhatsAppNotification(orderData);
+                
+                // Update admin panel if open
+                if (isAdminLoggedIn()) {
+                    loadOrders();
+                }
+                
+                return true;
+            } catch (error) {
+                console.error('Error saving order:', error);
+                return false;
+            }
+        }
+        
+        // Get all orders
+        function getOrders() {
+            try {
+                const orders = localStorage.getItem(STORAGE_KEYS.ORDERS);
+                return orders ? JSON.parse(orders) : [];
+            } catch (error) {
+                console.error('Error getting orders:', error);
+                return [];
+            }
+        }
+        
+        // Get today's orders count
+        function getTodayOrdersCount() {
+            const orders = getOrders();
+            const today = new Date().toDateString();
+            return orders.filter(order => {
+                const orderDate = new Date(order.timestamp).toDateString();
+                return orderDate === today;
+            }).length;
+        }
+        
+        // Mark order as read
+        function markOrderAsRead(orderId) {
+            const orders = getOrders();
+            const orderIndex = orders.findIndex(order => order.id === orderId);
+            if (orderIndex !== -1) {
+                orders[orderIndex].read = true;
+                localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(orders));
+                return true;
+            }
+            return false;
+        }
+        
+        // Delete order
+        function deleteOrder(orderId) {
+            const orders = getOrders();
+            const filteredOrders = orders.filter(order => order.id !== orderId);
+            localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(filteredOrders));
+            return true;
+        }
+        
+        // Clear all orders
+        function clearAllOrders() {
+            if (confirm('Are you sure you want to delete ALL orders? This cannot be undone.')) {
+                localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify([]));
+                loadOrders();
+                alert('All orders have been cleared.');
+            }
+        }
+        
+        // Export orders as JSON
+        function exportOrders() {
+            const orders = getOrders();
+            const dataStr = JSON.stringify(orders, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            const exportFileDefaultName = `glam-orders-${new Date().toISOString().split('T')[0]}.json`;
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+        }
+        
+        // =================== WHATSAPP NOTIFICATIONS ===================
+        
+        // Send WhatsApp notification to owner
+        function sendWhatsAppNotification(orderData) {
+            try {
+                const ownerNumber = localStorage.getItem(STORAGE_KEYS.WHATSAPP_NUMBER) || WHATSAPP_BUSINESS_NUMBER;
+                const customMessage = localStorage.getItem(STORAGE_KEYS.CUSTOM_MESSAGE) || "🛍️ *NEW ORDER ALERT* 🛍️";
+                
+                // Format order details
+                const orderTime = new Date(orderData.timestamp).toLocaleString();
+                const orderDetails = `
+${customMessage}
+
+*Product:* ${orderData.productName}
+*Price:* GH₵ ${orderData.price}
+*Customer:* ${orderData.customerName || 'Not specified'}
+*Contact:* ${orderData.contact || 'Not provided'}
+*Time:* ${orderTime}
+
+Message: ${orderData.message || 'No additional message'}
+                `.trim();
+                
+                // Encode message for WhatsApp URL
+                const encodedMessage = encodeURIComponent(orderDetails);
+                const whatsappUrl = `https://wa.me/${ownerNumber}?text=${encodedMessage}`;
+                
+                // Open WhatsApp in new tab (silently)
+                window.open(whatsappUrl, '_blank');
+                
+                console.log('WhatsApp notification sent to:', ownerNumber);
+                return true;
+            } catch (error) {
+                console.error('Error sending WhatsApp notification:', error);
+                return false;
+            }
+        }
+        
+        // Save WhatsApp number
+        function saveWhatsAppNumber() {
+            const numberInput = document.getElementById('whatsappNumber');
+            const number = numberInput.value.trim();
+            
+            if (number && number.length >= 10) {
+                localStorage.setItem(STORAGE_KEYS.WHATSAPP_NUMBER, number);
+                alert('WhatsApp number saved successfully!');
+            } else {
+                alert('Please enter a valid WhatsApp number (e.g., 233xxxxxxxxx)');
+            }
+        }
+        
+        // Save custom message
+        function saveCustomMessage() {
+            const messageInput = document.getElementById('customMessage');
+            const message = messageInput.value.trim();
+            
+            if (message) {
+                localStorage.setItem(STORAGE_KEYS.CUSTOM_MESSAGE, message);
+            }
+        }
+        
+        // Test notification
+        function testNotification() {
+            const testOrder = {
+                productName: "Test Product",
+                price: "99.99",
+                customerName: "Test Customer",
+                contact: "Test Contact",
+                message: "This is a test notification",
+                timestamp: new Date().toISOString()
+            };
+            
+            if (sendWhatsAppNotification(testOrder)) {
+                alert('Test notification sent! Check your WhatsApp.');
+            }
+        }
+        
+        // =================== ADMIN AUTHENTICATION ===================
+        
+        // Check if admin is logged in
+        function isAdminLoggedIn() {
+            return localStorage.getItem(STORAGE_KEYS.ADMIN_LOGGED_IN) === 'true';
+        }
+        
+        // Login admin
+        function loginAdmin() {
+            const passwordInput = document.getElementById('adminPassword');
+            const password = passwordInput.value.trim();
+            
+            if (password === ADMIN_PASSWORD) {
+                localStorage.setItem(STORAGE_KEYS.ADMIN_LOGGED_IN, 'true');
+                closeAdminLogin();
+                showAdminPanel();
+                // Load saved WhatsApp number
+                const savedNumber = localStorage.getItem(STORAGE_KEYS.WHATSAPP_NUMBER);
+                if (savedNumber) {
+                    document.getElementById('whatsappNumber').value = savedNumber;
+                }
+                // Load saved custom message
+                const savedMessage = localStorage.getItem(STORAGE_KEYS.CUSTOM_MESSAGE);
+                if (savedMessage) {
+                    document.getElementById('customMessage').value = savedMessage;
+                }
+            } else {
+                alert('Invalid password!');
+            }
+            passwordInput.value = '';
+        }
+        
+        // Logout admin
+        function logoutAdmin() {
+            localStorage.removeItem(STORAGE_KEYS.ADMIN_LOGGED_IN);
+            hideAdminPanel();
+            alert('Logged out successfully.');
+        }
+        
+        // Show admin login modal
+        function showAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'flex';
+            document.getElementById('adminPassword').focus();
+        }
+        
+        // Close admin login modal
+        function closeAdminLogin() {
+            document.getElementById('adminLoginModal').style.display = 'none';
+        }
+        
+        // Show admin panel
+        function showAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            loadOrders();
+        }
+        
+        // Hide admin panel
+        function hideAdminPanel() {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        
+        // =================== ORDER DISPLAY ===================
+        
+        // Load and display orders
+        function loadOrders() {
+            const orders = getOrders();
+            const ordersList = document.getElementById('ordersList');
+            const todayOrdersCount = document.getElementById('todayOrdersCount');
+            const totalOrdersCount = document.getElementById('totalOrdersCount');
+            
+            // Update counts
+            todayOrdersCount.textContent = getTodayOrdersCount();
+            totalOrdersCount.textContent = orders.length;
+            
+            if (orders.length === 0) {
+                ordersList.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--gray);">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                        <p>No orders yet</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            orders.forEach(order => {
+                const orderDate = new Date(order.timestamp);
+                const formattedDate = orderDate.toLocaleString();
+                const isToday = orderDate.toDateString() === new Date().toDateString();
+                
+                html += `
+                    <div style="background: ${order.read ? 'var(--dark)' : 'rgba(212, 175, 55, 0.1)'}; padding: 15px; margin-bottom: 10px; border-radius: 5px; border-left: 3px solid ${order.read ? 'var(--gray)' : 'var(--gold-primary)'};">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+                            <div>
+                                <h4 style="color: var(--gold-secondary); margin: 0; font-size: 1.1rem;">${order.productName}</h4>
+                                <p style="color: var(--light); margin: 5px 0; font-size: 0.9rem;">
+                                    <i class="fas fa-user" style="margin-right: 5px;"></i> ${order.customerName || 'Anonymous'}
+                                    ${order.contact ? `| <i class="fas fa-phone" style="margin: 0 5px;"></i> ${order.contact}` : ''}
+                                </p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="color: var(--gold-primary); font-weight: bold; font-size: 1.2rem;">GH₵ ${order.price}</div>
+                                <div style="color: var(--gray); font-size: 0.8rem;">
+                                    <i class="fas fa-clock"></i> ${formattedDate}
+                                    ${isToday ? '<span style="color: var(--gold-primary); margin-left: 5px;">TODAY</span>' : ''}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        ${order.message ? `
+                            <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 3px; margin-top: 10px;">
+                                <p style="margin: 0; color: var(--light); font-size: 0.9rem;"><strong>Message:</strong> ${order.message}</p>
+                            </div>
+                        ` : ''}
+                        
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <button onclick="markAsRead(${order.id})" class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem;">
+                                <i class="fas fa-check"></i> Mark Read
+                            </button>
+                            <button onclick="deleteOrderFromUI(${order.id})" class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem; background: rgba(255,0,0,0.1); border-color: #ff4444; color: #ff4444;">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                            <button onclick="resendNotification(${order.id})" class="btn btn-outline" style="padding: 5px 10px; font-size: 0.8rem; margin-left: auto;">
+                                <i class="fab fa-whatsapp"></i> Resend
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            ordersList.innerHTML = html;
+        }
+        
+        // Mark order as read from UI
+        function markAsRead(orderId) {
+            if (markOrderAsRead(orderId)) {
+                loadOrders();
+            }
+        }
+        
+        // Delete order from UI
+        function deleteOrderFromUI(orderId) {
+            if (confirm('Delete this order?')) {
+                if (deleteOrder(orderId)) {
+                    loadOrders();
+                }
+            }
+        }
+        
+        // Resend notification
+        function resendNotification(orderId) {
+            const orders = getOrders();
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                if (sendWhatsAppNotification(order)) {
+                    alert('Notification resent!');
+                }
+            }
+        }
+        
+        // =================== ENHANCE ORDER BUTTONS ===================
+        
+        // Override existing WhatsApp order function to save orders
+        const originalOrderViaWhatsApp = window.orderViaWhatsApp;
+        window.orderViaWhatsApp = function(productName) {
+            // Get product price from the page
+            const productCard = document.querySelector(`.product-card:has(h3:contains("${productName}"))`);
+            let price = "0";
+            if (productCard) {
+                const priceElement = productCard.querySelector('.product-price');
+                if (priceElement) {
+                    price = priceElement.textContent.replace('GH₵', '').trim();
+                }
+            }
+            
+            // Show order form
+            const customerName = prompt("Please enter your name:");
+            if (!customerName) return;
+            
+            const contact = prompt("Please enter your phone number or WhatsApp:");
+            if (!contact) return;
+            
+            const message = prompt("Additional message (optional):");
+            
+            // Save order
+            const orderData = {
+                productName: productName,
+                price: price,
+                customerName: customerName.trim(),
+                contact: contact.trim(),
+                message: message ? message.trim() : ''
+            };
+            
+            if (saveOrder(orderData)) {
+                alert(`Thank you ${customerName}! Your order for ${productName} has been received. We'll contact you shortly.`);
+                
+                // Also open WhatsApp to business number
+                const businessMessage = `Hello! I'm interested in ${productName}. My name is ${customerName}. ${message ? '\n' + message : ''}`;
+                const encodedMessage = encodeURIComponent(businessMessage);
+                window.open(`https://wa.me/${WHATSAPP_BUSINESS_NUMBER}?text=${encodedMessage}`, '_blank');
+            } else {
+                alert('There was an error saving your order. Please try again.');
+            }
+        };
+        
+        // Also enhance the existing WhatsApp links
+        function enhanceWhatsAppLinks() {
+            document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+                if (link.href.includes('text=')) {
+                    const originalHref = link.href;
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const url = new URL(this.href);
+                        const params = new URLSearchParams(url.search);
+                        const text = params.get('text');
+                        
+                        if (text) {
+                            const productMatch = text.match(/I'm interested in (.*?)\./);
+                            if (productMatch) {
+                                const productName = productMatch[1];
+                                const priceMatch = this.closest('.product-card')?.querySelector('.product-price')?.textContent;
+                                let price = "0";
+                                if (priceMatch) {
+                                    price = priceMatch.replace('GH₵', '').trim();
+                                }
+                                
+                                const customerName = prompt("Please enter your name:");
+                                if (!customerName) return;
+                                
+                                const contact = prompt("Please enter your phone number:");
+                                if (!contact) return;
+                                
+                                const additionalMessage = prompt("Additional message (optional):");
+                                
+                                // Save order
+                                const orderData = {
+                                    productName: productName,
+                                    price: price,
+                                    customerName: customerName.trim(),
+                                    contact: contact.trim(),
+                                    message: additionalMessage ? additionalMessage.trim() : ''
+                                };
+                                
+                                if (saveOrder(orderData)) {
+                                    alert(`Thank you ${customerName}! Your order has been received.`);
+                                }
+                            }
+                        }
+                        
+                        // Open WhatsApp
+                        window.open(originalHref, '_blank');
+                    });
+                }
+            });
+        }
+        
+        // =================== INITIALIZATION ===================
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initStorage();
+            enhanceWhatsAppLinks();
+            
+            // Check for admin access via URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === 'true') {
+                document.getElementById('adminAccess').style.display = 'block';
+            }
+            
+            // Auto-login if already logged in
+            if (isAdminLoggedIn()) {
+                showAdminPanel();
+                const savedNumber = localStorage.getItem(STORAGE_KEYS.WHATSAPP_NUMBER);
+                if (savedNumber) {
+                    document.getElementById('whatsappNumber').value = savedNumber;
+                }
+                const savedMessage = localStorage.getItem(STORAGE_KEYS.CUSTOM_MESSAGE);
+                if (savedMessage) {
+                    document.getElementById('customMessage').value = savedMessage;
+                }
+            }
+            
+            // Auto-save custom message on change
+            document.getElementById('customMessage')?.addEventListener('change', saveCustomMessage);
+            
+            // Handle Enter key in admin login
+            document.getElementById('adminPassword')?.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    loginAdmin();
+                }
+            });
+        });
+        
+        // =================== GLOBAL FUNCTIONS ===================
+        window.showAdminLogin = showAdminLogin;
+        window.closeAdminLogin = closeAdminLogin;
+        window.loginAdmin = loginAdmin;
+        window.logoutAdmin = logoutAdmin;
+        window.clearAllOrders = clearAllOrders;
+        window.exportOrders = exportOrders;
+        window.saveWhatsAppNumber = saveWhatsAppNumber;
+        window.testNotification = testNotification;
+        window.markAsRead = markAsRead;
+        window.deleteOrderFromUI = deleteOrderFromUI;
+        window.resendNotification = resendNotification;
+        
+    })();
     </script>
 </body>
 </html>
